@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Gambar Buku -->
+    <ImageView
+        android:id="@+id/imageViewBook"
+        android:layout_width="200dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/_986756_building_education_school_school_icon_112321" />
+
+    <!-- Judul Buku -->
+    <TextView
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Judul Buku"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_below="@id/imageViewBook"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
+
+    <!-- Informasi Buku -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/textViewTitle"
+        android:layout_marginTop="16dp">
+
+        <!-- Author -->
+        <TextView
+            android:id="@+id/textViewAuthor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Author: John Doe"
+            android:textSize="18sp" />
+
+        <!-- Publisher -->
+        <TextView
+            android:id="@+id/textViewPublisher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Publisher: ABC Publishing"
+            android:textSize="18sp"
+            android:layout_marginTop="8dp" />
+
+        <!-- Tahun Terbit -->
+        <TextView
+            android:id="@+id/textViewYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tahun Terbit: 2022"
+            android:textSize="18sp"
+            android:layout_marginTop="8dp" />
+
+        <!-- Kategori -->
+        <TextView
+            android:id="@+id/textViewCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kategori: Fiksi"
+            android:textSize="18sp"
+            android:layout_marginTop="8dp" />
+
+        <!-- Deskripsi -->
+        <TextView
+            android:id="@+id/textViewDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deskripsi Buku"
+            android:textSize="18sp"
+            android:layout_marginTop="16dp" />
+
+        <Button
+            android:id="@+id/buttonRead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Baca"
+            android:layout_below="@id/textViewDescription"
+            android:layout_marginTop="32dp" />
+    </LinearLayout>
+
+</RelativeLayout>
