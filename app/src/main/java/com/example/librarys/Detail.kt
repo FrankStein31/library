@@ -76,7 +76,7 @@ class Detail : AppCompatActivity() {
         textViewCategory.text = "Kategori: ${book.categoryName}"
         textViewDescription.text = "Dekripsi : ${book.description_book}"
 
-        val imageUrl = "http://192.168.142.36:3001" + book.image
+        val imageUrl = "http://192.168.0.56:3001" + book.image
 
         Picasso.get()
             .load(imageUrl)
@@ -85,7 +85,7 @@ class Detail : AppCompatActivity() {
         // Menangani klik tombol "Baca"
         buttonRead.setOnClickListener {
             // Buka PDF menggunakan aplikasi pembaca PDF di perangkat
-            openPdfWithExternalApp(Uri.parse("http://192.168.142.36:3001" + book.pdf_file))
+            openPdfWithExternalApp(Uri.parse("http://192.168.0.56:3001" + book.pdf_file))
         }
     }
 

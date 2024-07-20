@@ -17,6 +17,7 @@ class Home : AppCompatActivity() {
         setContentView(R.layout.activity_home)
 
         val btnScanQR = findViewById<Button>(R.id.btnScan)
+
         btnScanQR.setOnClickListener {
             startQRCodeScanner()
         }

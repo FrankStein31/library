@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -92,6 +93,7 @@ class Login : AppCompatActivity() {
                         login(email, password, lat, long)
                     } else {
                         Toast.makeText(this, "Unable to get location", Toast.LENGTH_SHORT).show()
+                        Log.e("Lokasi gagal", "$location")
                     }
                 }
                 .addOnFailureListener { exception ->

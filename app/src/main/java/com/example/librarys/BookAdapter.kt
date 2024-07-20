@@ -39,7 +39,7 @@ class BookAdapter(private val context: Context, private var booksList: List<Book
         holder.authorTextView.text = "Author: ${book.author}"
         holder.publisherTextView.text = "Publisher: ${book.publisher}"
 
-        val imageUrl = "http://192.168.142.36:3001" + book.image
+        val imageUrl = "http://192.168.0.56:3001" + book.image
 
         Picasso.get()
             .load(imageUrl)
