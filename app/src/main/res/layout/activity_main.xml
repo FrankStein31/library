@@ -73,6 +73,26 @@
                 app:strokeWidth="2dp"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
 
+            <!-- Garis pembatas -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#BDBDBD"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:id="@+id/lewati"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="6dp"
+                android:text="lewati proses ini..."
+                android:textAlignment="center"
+                android:textColor="#37474F"
+                android:textSize="15sp"
+                android:textStyle="italic" />
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

@@ -12,15 +12,26 @@ import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
 
 class Home : AppCompatActivity() {
+    private var userId: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
         val btnScanQR = findViewById<Button>(R.id.btnScan)
 
+        // Ambil userId dari intent saat aktivitas dimulai
+        userId = intent.getStringExtra("userId")
+
         btnScanQR.setOnClickListener {
             startQRCodeScanner()
         }
+    }
+
+    private fun openBookDetail(bookId: Int) {
+        val intent = Intent(this, Detail::class.java)
+        intent.putExtra("book_id", bookId)
+        intent.putExtra("userId", userId)  // Gunakan userId yang disimpan
+        startActivity(intent)
     }
 
     private fun startQRCodeScanner() {
@@ -52,6 +63,7 @@ class Home : AppCompatActivity() {
         val qrCodeData = scannedData
         val intent = Intent(this, Book::class.java)
         intent.putExtra("scanned_data", qrCodeData)
+        intent.putExtra("userId", userId)
         startActivity(intent)
     }
 }

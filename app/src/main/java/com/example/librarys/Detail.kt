@@ -30,6 +30,7 @@ class Detail : AppCompatActivity() {
     private lateinit var textViewCategory: TextView
     private lateinit var textViewDescription: TextView
     private lateinit var buttonRead: Button
+    private var userId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +44,8 @@ class Detail : AppCompatActivity() {
         textViewCategory = findViewById(R.id.textViewCategory)
         textViewDescription = findViewById(R.id.textViewDescription)
         buttonRead = findViewById(R.id.buttonRead)
+
+        userId = intent.getStringExtra("userId")
 
         val bookId = intent.getIntExtra("book_id", 0)
         fetchBookDetail(bookId)
@@ -83,10 +86,22 @@ class Detail : AppCompatActivity() {
             .into(imageViewBook)
 
         // Menangani klik tombol "Baca"
+//        buttonRead.setOnClickListener {
+//            openPdfWithExternalApp(Uri.parse("http://192.168.0.56:3001" + book.pdf_file))
+//        }
         buttonRead.setOnClickListener {
-            // Buka PDF menggunakan aplikasi pembaca PDF di perangkat
-            openPdfWithExternalApp(Uri.parse("http://192.168.0.56:3001" + book.pdf_file))
+            if (userId != null) {
+                openPdfWithExternalApp(Uri.parse("http://192.168.0.56:3001" + book.pdf_file))
+            } else {
+                // Jika belum login, arahkan ke halaman Login
+                val intent = Intent(this@Detail, Login::class.java)
+                intent.putExtra("returnToDetail", true)
+                intent.putExtra("bookId", book.id)
+                startActivity(intent)
+                finish()  // Tutup activity Detail saat ini
+            }
         }
+
     }
 
     private fun openPdfWithExternalApp(pdfUrl: Uri) {

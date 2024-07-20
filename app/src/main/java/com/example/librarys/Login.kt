@@ -109,6 +109,31 @@ class Login : AppCompatActivity() {
         val call = RetrofitClient.instance.login(lat, long, loginData)
 
         call.enqueue(object : Callback<LoginResponse> {
+//            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+//                if (response.isSuccessful) {
+//                    val loginResponse = response.body()
+//                    loginResponse?.let {
+//                        if (it.data?.role == "student") {
+//                            val message = "Login success"
+//                            Toast.makeText(this@Login, message, Toast.LENGTH_SHORT).show()
+//
+//                            // Redirect to HomeActivity and pass data if needed
+//                            val intent = Intent(this@Login, Home::class.java)
+//                            intent.putExtra("userId", it.data.id)
+//                            intent.putExtra("userName", it.data.name)
+//                            intent.putExtra("userEmail", it.data.email)
+//                            intent.putExtra("userRole", it.data.role)
+//                            startActivity(intent)
+//                            finish()
+//                        } else {
+//                            Toast.makeText(this@Login, "User not activation, please contact admin!", Toast.LENGTH_SHORT).show()
+//                        }
+//                    }
+//                } else {
+//                    val message = "email or password is wrong"
+//                    Toast.makeText(this@Login, "Login failed: $message", Toast.LENGTH_SHORT).show()
+//                }
+//            }
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful) {
                     val loginResponse = response.body()
@@ -117,13 +142,22 @@ class Login : AppCompatActivity() {
                             val message = "Login success"
                             Toast.makeText(this@Login, message, Toast.LENGTH_SHORT).show()
 
-                            // Redirect to HomeActivity and pass data if needed
-                            val intent = Intent(this@Login, Home::class.java)
-                            intent.putExtra("userId", it.data.id)
-                            intent.putExtra("userName", it.data.name)
-                            intent.putExtra("userEmail", it.data.email)
-                            intent.putExtra("userRole", it.data.role)
-                            startActivity(intent)
+                            // Cek apakah perlu kembali ke halaman Detail
+                            if (intent.getBooleanExtra("returnToDetail", false)) {
+                                val bookId = intent.getIntExtra("bookId", 0)
+                                val detailIntent = Intent(this@Login, Detail::class.java)
+                                detailIntent.putExtra("book_id", bookId)
+                                detailIntent.putExtra("userId", it.data.id.toString())
+                                startActivity(detailIntent)
+                            } else {
+                                // Redirect ke HomeActivity
+                                val intent = Intent(this@Login, Home::class.java)
+                                intent.putExtra("userId", it.data.id.toString())
+                                intent.putExtra("userName", it.data.name)
+                                intent.putExtra("userEmail", it.data.email)
+                                intent.putExtra("userRole", it.data.role)
+                                startActivity(intent)
+                            }
                             finish()
                         } else {
                             Toast.makeText(this@Login, "User not activation, please contact admin!", Toast.LENGTH_SHORT).show()

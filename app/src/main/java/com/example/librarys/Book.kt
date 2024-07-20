@@ -20,6 +20,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class Book : AppCompatActivity() {
+    private var userId: String? = null
     private lateinit var listViewBooks: ListView
     private lateinit var booksAdapter: BookAdapter
     private var booksList: List<Book> = ArrayList()
@@ -35,10 +36,11 @@ class Book : AppCompatActivity() {
         listViewBooks = findViewById(R.id.listViewBooks)
         booksAdapter = BookAdapter(this, booksList)
         listViewBooks.adapter = booksAdapter
-
+        userId = intent.getStringExtra("userId")
         listViewBooks.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
             val selectedBook = booksList[position]
             val intent = Intent(this@Book, Detail::class.java)
+            intent.putExtra("userId", userId)
             intent.putExtra("book_id", selectedBook.id)
             startActivity(intent)
         }

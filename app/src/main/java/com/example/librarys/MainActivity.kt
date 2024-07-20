@@ -3,6 +3,7 @@ package com.example.librarys
 import android.os.Bundle
 import android.widget.Button
 import android.content.Intent
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -13,6 +14,7 @@ class MainActivity : AppCompatActivity() {
 
         val btnLogin = findViewById<Button>(R.id.btnLogin)
         val btnSignUp = findViewById<Button>(R.id.btnSignUp)
+        val lewati = findViewById<TextView>(R.id.lewati)
 
         btnLogin.setOnClickListener {
             // Navigate to LoginActivity
@@ -23,6 +25,11 @@ class MainActivity : AppCompatActivity() {
         btnSignUp.setOnClickListener {
             // Navigate to RegisterActivity
             val intent = Intent(this, Register::class.java)
+            startActivity(intent)
+        }
+
+        lewati.setOnClickListener{
+            val intent = Intent(this, Home::class.java)
             startActivity(intent)
         }
     }
